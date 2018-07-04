@@ -1,0 +1,55 @@
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test-2.7
+      - test-3.5
+      - test-3.6
+      - test-latest
+jobs:
+  test-3.6: &test-template
+    docker:
+      - image: circleci/python:3.6
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: sudo apt-get install python-dev
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "setup.py" }}
+          - v1-dependencies-
+      - run:
+          name: Install dependencies
+          command: |
+            python -m venv venv || virtualenv -p /usr/bin/python2.7 venv
+            . venv/bin/activate
+            pip install -e .[dev]
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "setup.py" }}
+
+      - run:
+          name: Run test suite
+          command: |
+            . venv/bin/activate
+            nosetests .
+
+      - run:
+          name: Can run binary script
+          command: |
+            . venv/bin/activate
+            oa-to-md -h
+  test-3.5:
+    <<: *test-template
+    docker:
+      - image: circleci/python:3.5
+  test-2.7:
+    <<: *test-template
+    docker:
+      - image: circleci/python:2.7
+  test-latest:
+    <<: *test-template
+    docker:
+      - image: circleci/python:latest
