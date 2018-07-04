@@ -4,7 +4,7 @@ setup(
     name='jours_feries_france',
     license='MIT',
     packages=['jours_feries_france'],
-    version='0.1.3',
+    version='0.2.0',
     description='Get bank holidays for France',
     author='Antoine Augusti',
     author_email='hi@antoine-augusti.fr',

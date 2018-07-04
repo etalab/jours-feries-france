@@ -21,7 +21,6 @@ class TestDatasetParser(unittest.TestCase):
                 'Lundi de Pâques': datetime.date(2018, 4, 2),
                 'Noël': datetime.date(2018, 12, 25),
                 'Pentecôte': datetime.date(2018, 5, 21),
-                'Pâques': datetime.date(2018, 4, 1),
                 'Toussaint': datetime.date(2018, 11, 1),
                 'Victoire des alliés': datetime.date(2018, 5, 8)
             }
@@ -39,7 +38,6 @@ class TestDatasetParser(unittest.TestCase):
                 'Lundi de Pâques': datetime.date(2020, 4, 13),
                 'Noël': datetime.date(2020, 12, 25),
                 'Pentecôte': datetime.date(2020, 6, 1),
-                'Pâques': datetime.date(2020, 4, 12),
                 'Toussaint': datetime.date(2020, 11, 1),
                 'Victoire des alliés': datetime.date(2020, 5, 8)
             }

@@ -19,7 +19,6 @@ class JoursFeries(object):
             "Toussaint": JoursFeries.toussaint(year),
             "Armistice": JoursFeries.armistice(year),
             "Noël": JoursFeries.noel(year),
-            "Pâques": JoursFeries.paques(year),
             "Lundi de Pâques": JoursFeries.lundiDePaques(year),
             "Ascension": JoursFeries.ascension(year),
             "Pentecôte": JoursFeries.pentecote(year)
