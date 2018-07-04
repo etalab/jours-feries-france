@@ -35,12 +35,6 @@ jobs:
           command: |
             . venv/bin/activate
             nosetests .
-
-      - run:
-          name: Can run binary script
-          command: |
-            . venv/bin/activate
-            oa-to-md -h
   test-3.5:
     <<: *test-template
     docker:
