@@ -2,7 +2,7 @@
 ![CircleCI](https://img.shields.io/circleci/project/github/AntoineAugusti/jours-feries-france.svg?style=flat-square)
 
 
-# OpenAPI Components Schemas to Markdown
+# Jours Fériés France
 This library computes bank holidays dates for France, for a given year.
 
 ## Installation
@@ -11,12 +11,11 @@ pip install jours-feries-france
 ```
 
 ## Usage
-The package provides a command line tool.
 ```python
 from jours_feries_france.compute import JoursFeries
 
 res = JoursFeries.for_year(2018)
-# res is now
+# res is now a dict
 # {
 #     'Armistice': datetime.date(2018, 11, 11),
 #     'Ascension': datetime.date(2018, 5, 10),
@@ -32,7 +31,7 @@ res = JoursFeries.for_year(2018)
 #     'Victoire des alliés': datetime.date(2018, 5, 8)
 # }
 
-# You can also get specific bank holidays
+# You can also get specific bank holidays as a datetime.date
 print (JoursFeries.paques(2018))
 print (JoursFeries.lundiDePaques(2018))
 print (JoursFeries.ascension(2018))
