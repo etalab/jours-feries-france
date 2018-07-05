@@ -9,8 +9,8 @@ class JoursFeries(object):
         super(JoursFeries, self).__init__()
 
     @staticmethod
-    def for_year(year):
-        return {
+    def for_year(year, include_alsace=False):
+        res = {
             "Jour de l'an": JoursFeries.jourDeLAn(year),
             "Fête du travail": JoursFeries.feteDuTravail(year),
             "Victoire des alliés": JoursFeries.victoireDeAllies(year),
@@ -23,6 +23,12 @@ class JoursFeries(object):
             "Ascension": JoursFeries.ascension(year),
             "Pentecôte": JoursFeries.pentecote(year)
         }
+
+        if include_alsace:
+            res["Vendredi Saint"] = JoursFeries.vendrediSaint(year)
+            res["Saint Étienne"] = JoursFeries.saintEtienne(year)
+
+        return res
 
     @staticmethod
     def paques(year):
@@ -49,6 +55,12 @@ class JoursFeries(object):
         delta = datetime.timedelta(days=1)
 
         return JoursFeries.paques(year) + delta
+
+    @staticmethod
+    def vendrediSaint(year):
+        delta = datetime.timedelta(days=2)
+
+        return JoursFeries.paques(year) - delta
 
     @staticmethod
     def ascension(year):
@@ -93,3 +105,7 @@ class JoursFeries(object):
     @staticmethod
     def noel(year):
             return datetime.date(year, 12, 25)
+
+    @staticmethod
+    def saintEtienne(year):
+        return datetime.date(year, 12, 26)

@@ -26,13 +26,11 @@ res = JoursFeries.for_year(2018)
 #     'Lundi de Pâques': datetime.date(2018, 4, 2),
 #     'Noël': datetime.date(2018, 12, 25),
 #     'Pentecôte': datetime.date(2018, 5, 21),
-#     'Pâques': datetime.date(2018, 4, 1),
 #     'Toussaint': datetime.date(2018, 11, 1),
 #     'Victoire des alliés': datetime.date(2018, 5, 8)
 # }
 
 # You can also get specific bank holidays as a datetime.date
-print (JoursFeries.paques(2018))
 print (JoursFeries.lundiDePaques(2018))
 print (JoursFeries.ascension(2018))
 print (JoursFeries.pentecote(2018))
@@ -44,4 +42,11 @@ print (JoursFeries.toussaint(2018))
 print (JoursFeries.assomption(2018))
 print (JoursFeries.armistice(2018))
 print (JoursFeries.noel(2018))
+
+# The Alsace-Moselle region has 2 extra bank holidays.
+# You can include them this way
+res = JoursFeries.for_year(2018, include_alsace=True)
+
+print (JoursFeries.vendrediSaint(2018))
+print (JoursFeries.saintEtienne(2018))
 ```
