@@ -10,15 +10,20 @@ jobs:
   test-3.6: &test-template
     docker:
       - image: circleci/python:3.6
+    environment:
+      PYTHON_VERSION=3.6
     working_directory: ~/repo
     steps:
       - checkout
-      - run: sudo apt-get install python-dev
 
+      - run:
+          name: Write Python version to file
+          command: |
+            echo $PYTHON_VERSION > /tmp/PYTHON_VERSION
+            cat /tmp/PYTHON_VERSION
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "setup.py" }}
-          - v1-dependencies-
+          - v1-dependencies-{{ checksum "setup.py" }}-{{ checksum "/tmp/PYTHON_VERSION" }}
       - run:
           name: Install dependencies
           command: |
@@ -28,7 +33,7 @@ jobs:
       - save_cache:
           paths:
             - ./venv
-          key: v1-dependencies-{{ checksum "setup.py" }}
+          key: v1-dependencies-{{ checksum "setup.py" }}-{{ checksum "/tmp/PYTHON_VERSION" }}
 
       - run:
           name: Run test suite
@@ -39,11 +44,17 @@ jobs:
     <<: *test-template
     docker:
       - image: circleci/python:3.5
+    environment:
+      PYTHON_VERSION=3.5
   test-2.7:
     <<: *test-template
     docker:
       - image: circleci/python:2.7
+    environment:
+      PYTHON_VERSION=2.7
   test-latest:
     <<: *test-template
     docker:
       - image: circleci/python:latest
+    environment:
+      PYTHON_VERSION=latest
