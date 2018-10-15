@@ -50,3 +50,14 @@ res = JoursFeries.for_year(2018, include_alsace=True)
 print (JoursFeries.vendrediSaint(2018))
 print (JoursFeries.saintEtienne(2018))
 ```
+
+## Data
+If you just want a CSV dump, check out the ["Jours fériés en France" opendata dataset](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) available on data.gouv.fr.
+
+## School holidays
+Interested in school holidays as well (vacances scolaires in French)? There is another pip package for this! Check out https://github.com/AntoineAugusti/vacances-scolaires-france
+
+## Notice
+This software is available under the MIT license and was developed as part of the [Entrepreneur d'Intérêt Général program](https://entrepreneur-interet-general.etalab.gouv.fr) by the French government.
+
+Projet développé dans le cadre du programme « [Entrepreneur d’intérêt général](https://entrepreneur-interet-general.etalab.gouv.fr) ».
