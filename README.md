@@ -54,6 +54,9 @@ print (JoursFeries.saintEtienne(2018))
 ## Data
 If you just want a CSV dump, check out the ["Jours fériés en France" opendata dataset](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) available on data.gouv.fr.
 
+## REST API
+Looking for a JSON API? Check out [this GitHub project](https://github.com/AntoineAugusti/api-jours-feries-france).
+
 ## School holidays
 Interested in school holidays as well (vacances scolaires in French)? There is another pip package for this! Check out https://github.com/AntoineAugusti/vacances-scolaires-france
 
