@@ -13,7 +13,7 @@ class JoursFeries(object):
         res = {
             "Jour de l'an": JoursFeries.jourDeLAn(year),
             "Fête du travail": JoursFeries.feteDuTravail(year),
-            "Victoire des alliés": JoursFeries.victoireDeAllies(year),
+            "Victoire des alliés": JoursFeries.victoireDesAllies(year),
             "Fête Nationale": JoursFeries.feteNationale(year),
             "Assomption": JoursFeries.assomption(year),
             "Toussaint": JoursFeries.toussaint(year),
@@ -83,7 +83,7 @@ class JoursFeries(object):
         return datetime.date(year, 5, 1)
 
     @staticmethod
-    def victoireDeAllies(year):
+    def victoireDesAllies(year):
         return datetime.date(year, 5, 8)
 
     @staticmethod
