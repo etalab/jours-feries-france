@@ -25,7 +25,7 @@ res = JoursFeries.for_year(2018)
 #     "Jour de l'an": datetime.date(2018, 1, 1),
 #     'Lundi de Pâques': datetime.date(2018, 4, 2),
 #     'Noël': datetime.date(2018, 12, 25),
-#     'Pentecôte': datetime.date(2018, 5, 21),
+#     'Lundi de Pentecôte': datetime.date(2018, 5, 21),
 #     'Toussaint': datetime.date(2018, 11, 1),
 #     'Victoire des alliés': datetime.date(2018, 5, 8)
 # }

@@ -21,7 +21,7 @@ class JoursFeries(object):
             "Noël": JoursFeries.noel(year),
             "Lundi de Pâques": JoursFeries.lundiDePaques(year),
             "Ascension": JoursFeries.ascension(year),
-            "Pentecôte": JoursFeries.pentecote(year)
+            "Lundi de Pentecôte": JoursFeries.lundiDePentecote(year)
         }
 
         if include_alsace:
@@ -69,7 +69,7 @@ class JoursFeries(object):
         return JoursFeries.paques(year) + delta
 
     @staticmethod
-    def pentecote(year):
+    def lundiDePentecote(year):
         delta = datetime.timedelta(days=50)
 
         return JoursFeries.paques(year) + delta

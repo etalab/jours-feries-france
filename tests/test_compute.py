@@ -20,7 +20,7 @@ class TestDatasetParser(unittest.TestCase):
                 "Jour de l'an": datetime.date(2018, 1, 1),
                 'Lundi de Pâques': datetime.date(2018, 4, 2),
                 'Noël': datetime.date(2018, 12, 25),
-                'Pentecôte': datetime.date(2018, 5, 21),
+                'Lundi de Pentecôte': datetime.date(2018, 5, 21),
                 'Toussaint': datetime.date(2018, 11, 1),
                 'Victoire des alliés': datetime.date(2018, 5, 8)
             }
@@ -37,7 +37,7 @@ class TestDatasetParser(unittest.TestCase):
                 "Jour de l'an": datetime.date(2020, 1, 1),
                 'Lundi de Pâques': datetime.date(2020, 4, 13),
                 'Noël': datetime.date(2020, 12, 25),
-                'Pentecôte': datetime.date(2020, 6, 1),
+                'Lundi de Pentecôte': datetime.date(2020, 6, 1),
                 'Toussaint': datetime.date(2020, 11, 1),
                 'Victoire des alliés': datetime.date(2020, 5, 8)
             }
@@ -56,7 +56,7 @@ class TestDatasetParser(unittest.TestCase):
                 "Jour de l'an": datetime.date(2018, 1, 1),
                 'Lundi de Pâques': datetime.date(2018, 4, 2),
                 'Noël': datetime.date(2018, 12, 25),
-                'Pentecôte': datetime.date(2018, 5, 21),
+                'Lundi de Pentecôte': datetime.date(2018, 5, 21),
                 'Toussaint': datetime.date(2018, 11, 1),
                 'Victoire des alliés': datetime.date(2018, 5, 8),
                 'Vendredi Saint': datetime.date(2018, 3, 30),
@@ -75,7 +75,7 @@ class TestDatasetParser(unittest.TestCase):
                 "Jour de l'an": datetime.date(2020, 1, 1),
                 'Lundi de Pâques': datetime.date(2020, 4, 13),
                 'Noël': datetime.date(2020, 12, 25),
-                'Pentecôte': datetime.date(2020, 6, 1),
+                'Lundi de Pentecôte': datetime.date(2020, 6, 1),
                 'Toussaint': datetime.date(2020, 11, 1),
                 'Victoire des alliés': datetime.date(2020, 5, 8),
                 'Vendredi Saint': datetime.date(2020, 4, 10),
