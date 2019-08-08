@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-import datetime
-import math
+from datetime import date
+from datetime import timedelta
 
 
 class JoursFeries(object):
@@ -40,64 +40,64 @@ class JoursFeries(object):
         f = d + e - 7 * ((a + 11 * d + 22 * e) // 451) + 114
         month = f // 31
         day = f % 31 + 1
-        return datetime.date(year, month, day)
+        return date(year, month, day)
 
     @staticmethod
     def lundiDePaques(year):
-        delta = datetime.timedelta(days=1)
+        delta = timedelta(days=1)
 
         return JoursFeries.paques(year) + delta
 
     @staticmethod
     def vendrediSaint(year):
-        delta = datetime.timedelta(days=2)
+        delta = timedelta(days=2)
 
         return JoursFeries.paques(year) - delta
 
     @staticmethod
     def ascension(year):
-        delta = datetime.timedelta(days=39)
+        delta = timedelta(days=39)
 
         return JoursFeries.paques(year) + delta
 
     @staticmethod
     def lundiDePentecote(year):
-        delta = datetime.timedelta(days=50)
+        delta = timedelta(days=50)
 
         return JoursFeries.paques(year) + delta
 
     @staticmethod
     def jourDeLAn(year):
-        return datetime.date(year, 1, 1)
+        return date(year, 1, 1)
 
     @staticmethod
     def feteDuTravail(year):
-        return datetime.date(year, 5, 1)
+        return date(year, 5, 1)
 
     @staticmethod
     def victoireDesAllies(year):
-        return datetime.date(year, 5, 8)
+        return date(year, 5, 8)
 
     @staticmethod
     def feteNationale(year):
-        return datetime.date(year, 7, 14)
+        return date(year, 7, 14)
 
     @staticmethod
     def toussaint(year):
-        return datetime.date(year, 11, 1)
+        return date(year, 11, 1)
 
     @staticmethod
     def assomption(year):
-        return datetime.date(year, 8, 15)
+        return date(year, 8, 15)
 
     @staticmethod
     def armistice(year):
-        return datetime.date(year, 11, 11)
+        return date(year, 11, 11)
 
     @staticmethod
     def noel(year):
-        return datetime.date(year, 12, 25)
+        return date(year, 12, 25)
 
     @staticmethod
     def saintEtienne(year):
-        return datetime.date(year, 12, 26)
+        return date(year, 12, 26)
