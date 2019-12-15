@@ -45,7 +45,7 @@ print (JoursFeries.noel(2018))
 
 # The Alsace-Moselle region has 2 extra bank holidays.
 # You can include them this way
-res = JoursFeries.for_year(2018, include_alsace=True)
+res = JoursFeries.for_year(2018, zone="Alsace-Moselle")
 
 print (JoursFeries.vendrediSaint(2018))
 print (JoursFeries.saintEtienne(2018))

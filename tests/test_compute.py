@@ -8,6 +8,36 @@ from jours_feries_france.compute import JoursFeries
 
 
 class TestDatasetParser(unittest.TestCase):
+    def test_validates_region(self):
+        with self.assertRaises(ValueError):
+            JoursFeries.for_year(2018, zone="foo")
+
+    def test_is_holiday(self):
+        self.assertTrue(JoursFeries.is_holiday(date(2019, 12, 25)))
+        self.assertTrue(JoursFeries.is_holiday(date(2019, 12, 25), zone="Métropole"))
+        self.assertTrue(
+            JoursFeries.is_holiday(date(2019, 12, 26), zone="Alsace-Moselle")
+        )
+
+        self.assertFalse(JoursFeries.is_holiday(date(2019, 12, 26)))
+        self.assertFalse(JoursFeries.is_holiday(date(2019, 12, 26), zone="Métropole"))
+
+    def test_next_holiday(self):
+        self.assertEquals(
+            ("Armistice", date(2018, 11, 11)),
+            JoursFeries.next_holiday(date(2018, 11, 10)),
+        )
+
+        self.assertEquals(
+            ("Armistice", date(2018, 11, 11)),
+            JoursFeries.next_holiday(date(2018, 11, 11), zone="Métropole"),
+        )
+
+        self.assertEquals(
+            ("Noël", date(2018, 12, 25)),
+            JoursFeries.next_holiday(date(2018, 12, 11), zone="Métropole"),
+        )
+
     def test_for_year(self):
         self.assertEquals(
             JoursFeries.for_year(2018),
@@ -44,9 +74,8 @@ class TestDatasetParser(unittest.TestCase):
         )
 
     def test_for_year_in_alsace(self):
-        self.maxDiff = None
         self.assertEquals(
-            JoursFeries.for_year(2018, include_alsace=True),
+            JoursFeries.for_year(2018, zone="Alsace-Moselle"),
             {
                 "Armistice": date(2018, 11, 11),
                 "Ascension": date(2018, 5, 10),
@@ -65,7 +94,7 @@ class TestDatasetParser(unittest.TestCase):
         )
 
         self.assertEquals(
-            JoursFeries.for_year(2020, include_alsace=True),
+            JoursFeries.for_year(2020, zone="Alsace-Moselle"),
             {
                 "Armistice": date(2020, 11, 11),
                 "Ascension": date(2020, 5, 21),
