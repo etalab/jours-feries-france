@@ -17,39 +17,48 @@ from jours_feries_france.compute import JoursFeries
 res = JoursFeries.for_year(2018)
 # res is now a dict
 # {
-#     'Armistice': datetime.date(2018, 11, 11),
-#     'Ascension': datetime.date(2018, 5, 10),
-#     'Assomption': datetime.date(2018, 8, 15),
-#     'Fête Nationale': datetime.date(2018, 7, 14),
-#     'Fête du travail': datetime.date(2018, 5, 1),
-#     "Jour de l'an": datetime.date(2018, 1, 1),
-#     'Lundi de Pâques': datetime.date(2018, 4, 2),
-#     'Noël': datetime.date(2018, 12, 25),
-#     'Lundi de Pentecôte': datetime.date(2018, 5, 21),
-#     'Toussaint': datetime.date(2018, 11, 1),
-#     'Victoire des alliés': datetime.date(2018, 5, 8)
+#     "Jour de l'an": date(2018, 1, 1),
+#     "Lundi de Pâques": date(2018, 4, 2),
+#     "Fête du travail": date(2018, 5, 1),
+#     "Victoire des alliés": date(2018, 5, 8),
+#     "Ascension": date(2018, 5, 10),
+#     "Lundi de Pentecôte": date(2018, 5, 21),
+#     "Fête Nationale": date(2018, 7, 14),
+#     "Assomption": date(2018, 8, 15),
+#     "Toussaint": date(2018, 11, 1),
+#     "Armistice": date(2018, 11, 11),
+#     "Noël": date(2018, 12, 25),
 # }
 
 # You can also get specific bank holidays as a datetime.date
 print (JoursFeries.lundiDePaques(2018))
 print (JoursFeries.ascension(2018))
-print (JoursFeries.pentecote(2018))
-print (JoursFeries.jourDeLAn(2018))
-print (JoursFeries.feteDuTravail(2018))
-print (JoursFeries.victoireDesAllies(2018))
-print (JoursFeries.feteNationale(2018))
-print (JoursFeries.toussaint(2018))
-print (JoursFeries.assomption(2018))
-print (JoursFeries.armistice(2018))
-print (JoursFeries.noel(2018))
+print (JoursFeries.lundiDePentecote(2018))
 
-# The Alsace-Moselle region has 2 extra bank holidays.
-# You can include them this way
+# Get bank holidays for a specific French zone.
 res = JoursFeries.for_year(2018, zone="Alsace-Moselle")
 
-print (JoursFeries.vendrediSaint(2018))
-print (JoursFeries.saintEtienne(2018))
+# Some helpers
+JoursFeries.is_holiday(datetime.date(2019, 12, 25), zone="Métropole")
+# -> True
+JoursFeries.next_holiday(datetime.date(2019, 12, 24), zone="Métropole")
+# -> ('Noël', datetime.date(2019, 12, 25))
 ```
+
+### Available zones
+The following zones are available:
+- `Métropole` (default)
+- `Alsace-Moselle`
+- `Guadeloupe`
+- `Guyane`
+- `Martinique`
+- `Mayotte`
+- `Nouvelle-Calédonie`
+- `La Réunion`
+- `Polynésie Française`
+- `Saint-Barthélémy`
+- `Saint-Martin`
+- `Wallis-et-Futuna`
 
 ## Data
 If you just want a CSV dump, check out the ["Jours fériés en France" opendata dataset](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) available on data.gouv.fr.

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from datetime import date
-from datetime import timedelta
+
+from datetime import date, timedelta
 
 
 class JoursFeries(object):
@@ -64,8 +64,72 @@ class JoursFeries(object):
             "Lundi de Pâques": JoursFeries.lundiDePaques(year),
             "Ascension": JoursFeries.ascension(year),
             "Lundi de Pentecôte": JoursFeries.lundiDePentecote(year),
+            "Vendredi Saint": JoursFeries.vendrediSaint(year, zone),
+            "Saint Étienne": JoursFeries.saintEtienne(year, zone),
+            "Abolition de l'esclavage": JoursFeries.abolitionDeLesclavage(year, zone),
+            "Saint Pierre Chanel": JoursFeries.saintPierreChanel(year, zone),
+            "Fête de l'autonomie": JoursFeries.feteAutonomie(year, zone),
+            "Fête Victor Schoelcher": JoursFeries.feteVictorSchoelcher(year, zone),
+            "Fête du Territoire": JoursFeries.feteTerritoire(year, zone),
+            "Fête de la Citoyenneté": JoursFeries.feteCitoyennete(year, zone),
         }
 
+        holidays = {k: v for k, v in holidays.items() if v}
+
+        return {k: v for k, v in sorted(holidays.items(), key=lambda item: item[1])}
+
+    @staticmethod
+    def paques(year):
+        if year < 1886:
+            return None
+        a = year % 19
+        b = year // 100
+        c = year % 100
+        d = (19 * a + b - b // 4 - ((b - (b + 8) // 25 + 1) // 3) + 15) % 30
+        e = (32 + 2 * (b % 4) + 2 * (c // 4) - d - (c % 4)) % 7
+        f = d + e - 7 * ((a + 11 * d + 22 * e) // 451) + 114
+        month = f // 31
+        day = f % 31 + 1
+        return date(year, month, day)
+
+    @staticmethod
+    def lundiDePaques(year):
+        if year >= 1886:
+            return JoursFeries.paques(year) + timedelta(days=1)
+        return None
+
+    @staticmethod
+    def saintPierreChanel(year, zone):
+        if zone == "Wallis-et-Futuna":
+            return date(year, 4, 28)
+        return None
+
+    @staticmethod
+    def feteAutonomie(year, zone):
+        if zone == "Polynésie Française":
+            return date(year, 6, 29)
+        return None
+
+    @staticmethod
+    def feteTerritoire(year, zone):
+        if zone == "Wallis-et-Futuna":
+            return date(year, 7, 29)
+        return None
+
+    @staticmethod
+    def feteCitoyennete(year, zone):
+        if zone == "Nouvelle-Calédonie":
+            return date(year, 9, 24)
+        return None
+
+    @staticmethod
+    def feteVictorSchoelcher(year, zone):
+        if zone in map(JoursFeries.check_zone, ["Guadeloupe", "Martinique"]):
+            return date(year, 7, 21)
+        return None
+
+    @staticmethod
+    def vendrediSaint(year, zone):
         if zone in map(
             JoursFeries.check_zone,
             [
@@ -76,41 +140,8 @@ class JoursFeries(object):
                 "Polynésie Française",
             ],
         ):
-            holidays["Vendredi Saint"] = JoursFeries.vendrediSaint(year)
-
-        if zone == JoursFeries.check_zone("Alsace-Moselle"):
-            holidays["Saint Étienne"] = JoursFeries.saintEtienne(year)
-
-        if zone in JoursFeries.ZONES:
-            holidays["Abolition de l'esclavage"] = JoursFeries.abolitionDeLesclavage(
-                year, zone
-            )
-
-        return {k: v for k, v in holidays.items() if v}
-
-    @staticmethod
-    def paques(year):
-        if year >= 1886:
-            a = year % 19
-            b = year // 100
-            c = year % 100
-            d = (19 * a + b - b // 4 - ((b - (b + 8) // 25 + 1) // 3) + 15) % 30
-            e = (32 + 2 * (b % 4) + 2 * (c // 4) - d - (c % 4)) % 7
-            f = d + e - 7 * ((a + 11 * d + 22 * e) // 451) + 114
-            month = f // 31
-            day = f % 31 + 1
-            return date(year, month, day)
+            return JoursFeries.paques(year) - timedelta(days=2)
         return None
-
-    @staticmethod
-    def lundiDePaques(year):
-        if year >= 1886:
-            return JoursFeries.paques(year) + timedelta(days=1)
-        return None
-
-    @staticmethod
-    def vendrediSaint(year):
-        return JoursFeries.paques(year) - timedelta(days=2)
 
     @staticmethod
     def ascension(year):
@@ -173,8 +204,10 @@ class JoursFeries(object):
         return None
 
     @staticmethod
-    def saintEtienne(year):
-        return date(year, 12, 26)
+    def saintEtienne(year, zone):
+        if zone == JoursFeries.check_zone("Alsace-Moselle"):
+            return date(year, 12, 26)
+        return None
 
     @staticmethod
     def abolitionDeLesclavage(year, zone):
@@ -184,7 +217,10 @@ class JoursFeries(object):
         if zone == JoursFeries.check_zone("Martinique"):
             return date(year, 5, 22)
 
-        if zone in map(JoursFeries.check_zone, ["Guadeloupe", "Saint-Martin"]):
+        if zone == JoursFeries.check_zone("Guadeloupe",):
+            return date(year, 5, 27)
+
+        if zone == JoursFeries.check_zone("Saint-Martin"):
             return date(year, 5, 27)
 
         if zone == JoursFeries.check_zone("Guyane"):

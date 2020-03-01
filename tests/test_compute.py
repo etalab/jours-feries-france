@@ -39,24 +39,24 @@ class TestDatasetParser(unittest.TestCase):
         )
 
     def test_for_year(self):
-        self.assertEquals(
+        self.assertDictEqual(
             JoursFeries.for_year(2018),
             {
-                "Armistice": date(2018, 11, 11),
-                "Ascension": date(2018, 5, 10),
-                "Assomption": date(2018, 8, 15),
-                "Fête Nationale": date(2018, 7, 14),
-                "Fête du travail": date(2018, 5, 1),
                 "Jour de l'an": date(2018, 1, 1),
                 "Lundi de Pâques": date(2018, 4, 2),
-                "Noël": date(2018, 12, 25),
-                "Lundi de Pentecôte": date(2018, 5, 21),
-                "Toussaint": date(2018, 11, 1),
+                "Fête du travail": date(2018, 5, 1),
                 "Victoire des alliés": date(2018, 5, 8),
+                "Ascension": date(2018, 5, 10),
+                "Lundi de Pentecôte": date(2018, 5, 21),
+                "Fête Nationale": date(2018, 7, 14),
+                "Assomption": date(2018, 8, 15),
+                "Toussaint": date(2018, 11, 1),
+                "Armistice": date(2018, 11, 11),
+                "Noël": date(2018, 12, 25),
             },
         )
 
-        self.assertEquals(
+        self.assertDictEqual(
             JoursFeries.for_year(2020),
             {
                 "Armistice": date(2020, 11, 11),
@@ -74,7 +74,7 @@ class TestDatasetParser(unittest.TestCase):
         )
 
     def test_for_year_in_alsace(self):
-        self.assertEquals(
+        self.assertDictEqual(
             JoursFeries.for_year(2018, zone="Alsace-Moselle"),
             {
                 "Armistice": date(2018, 11, 11),
@@ -93,7 +93,7 @@ class TestDatasetParser(unittest.TestCase):
             },
         )
 
-        self.assertEquals(
+        self.assertDictEqual(
             JoursFeries.for_year(2020, zone="Alsace-Moselle"),
             {
                 "Armistice": date(2020, 11, 11),
