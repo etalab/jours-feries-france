@@ -130,16 +130,7 @@ class JoursFeries(object):
 
     @staticmethod
     def vendrediSaint(year, zone):
-        if zone in map(
-            JoursFeries.check_zone,
-            [
-                "Alsace-Moselle",
-                "Guadeloupe",
-                "Guyane",
-                "Martinique",
-                "Polynésie Française",
-            ],
-        ):
+        if zone == JoursFeries.check_zone("Alsace-Moselle"):
             return JoursFeries.paques(year) - timedelta(days=2)
         return None
 
@@ -217,11 +208,11 @@ class JoursFeries(object):
         if zone == JoursFeries.check_zone("Martinique"):
             return date(year, 5, 22)
 
-        if zone == JoursFeries.check_zone("Guadeloupe",):
+        if zone == JoursFeries.check_zone("Guadeloupe"):
             return date(year, 5, 27)
 
         if zone == JoursFeries.check_zone("Saint-Martin"):
-            return date(year, 5, 27)
+            return date(year, 5, 28)
 
         if zone == JoursFeries.check_zone("Guyane"):
             return date(year, 6, 10)
