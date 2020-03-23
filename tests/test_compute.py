@@ -139,22 +139,16 @@ class TestDatasetParser(unittest.TestCase):
 
         extra_holidays = [
             ["Alsace-Moselle", set(["Vendredi Saint", "Saint Étienne"])],
-            [
-                "Guadeloupe",
-                set(["Abolition de l'esclavage", "Fête Victor Schoelcher",]),
-            ],
+            ["Guadeloupe", set(["Abolition de l'esclavage"]),],
             ["Guyane", set(["Abolition de l'esclavage"])],
-            [
-                "Martinique",
-                set(["Abolition de l'esclavage", "Fête Victor Schoelcher",]),
-            ],
+            ["Martinique", set(["Abolition de l'esclavage"]),],
             ["Mayotte", set(["Abolition de l'esclavage"]),],
-            ["Nouvelle-Calédonie", set(["Fête de la Citoyenneté"])],
+            ["Nouvelle-Calédonie", set()],
             ["La Réunion", set(["Abolition de l'esclavage"])],
-            ["Polynésie Française", set(["Fête de l'autonomie"])],
+            ["Polynésie Française", set()],
             ["Saint-Barthélémy", set(["Abolition de l'esclavage"])],
             ["Saint-Martin", set(["Abolition de l'esclavage"])],
-            ["Wallis-et-Futuna", set(["Saint Pierre Chanel", "Fête du Territoire"])],
+            ["Wallis-et-Futuna", set()],
         ]
 
         self.assertSetEqual(names(JoursFeries.for_year(2020, "Métropole")), base)
@@ -190,3 +184,11 @@ class TestDatasetParser(unittest.TestCase):
 
         for zone in [z for z in JoursFeries.ZONES if z not in zones]:
             self.assertEquals(JoursFeries.abolitionDeLesclavage(2020, zone), None)
+
+        # Saint-Martin
+        self.assertEquals(
+            JoursFeries.abolitionDeLesclavage(2017, "Saint-Martin"), date(2017, 5, 27)
+        )
+        self.assertEquals(
+            JoursFeries.abolitionDeLesclavage(2018, "Saint-Martin"), date(2018, 5, 28)
+        )

@@ -67,11 +67,6 @@ class JoursFeries(object):
             "Vendredi Saint": JoursFeries.vendrediSaint(year, zone),
             "Saint Étienne": JoursFeries.saintEtienne(year, zone),
             "Abolition de l'esclavage": JoursFeries.abolitionDeLesclavage(year, zone),
-            "Saint Pierre Chanel": JoursFeries.saintPierreChanel(year, zone),
-            "Fête de l'autonomie": JoursFeries.feteAutonomie(year, zone),
-            "Fête Victor Schoelcher": JoursFeries.feteVictorSchoelcher(year, zone),
-            "Fête du Territoire": JoursFeries.feteTerritoire(year, zone),
-            "Fête de la Citoyenneté": JoursFeries.feteCitoyennete(year, zone),
         }
 
         holidays = {k: v for k, v in holidays.items() if v}
@@ -96,36 +91,6 @@ class JoursFeries(object):
     def lundiDePaques(year):
         if year >= 1886:
             return JoursFeries.paques(year) + timedelta(days=1)
-        return None
-
-    @staticmethod
-    def saintPierreChanel(year, zone):
-        if zone == "Wallis-et-Futuna":
-            return date(year, 4, 28)
-        return None
-
-    @staticmethod
-    def feteAutonomie(year, zone):
-        if zone == "Polynésie Française":
-            return date(year, 6, 29)
-        return None
-
-    @staticmethod
-    def feteTerritoire(year, zone):
-        if zone == "Wallis-et-Futuna":
-            return date(year, 7, 29)
-        return None
-
-    @staticmethod
-    def feteCitoyennete(year, zone):
-        if zone == "Nouvelle-Calédonie":
-            return date(year, 9, 24)
-        return None
-
-    @staticmethod
-    def feteVictorSchoelcher(year, zone):
-        if zone in map(JoursFeries.check_zone, ["Guadeloupe", "Martinique"]):
-            return date(year, 7, 21)
         return None
 
     @staticmethod
@@ -212,7 +177,10 @@ class JoursFeries(object):
             return date(year, 5, 27)
 
         if zone == JoursFeries.check_zone("Saint-Martin"):
-            return date(year, 5, 28)
+            if year >= 2018:
+                return date(year, 5, 28)
+            else:
+                return date(year, 5, 27)
 
         if zone == JoursFeries.check_zone("Guyane"):
             return date(year, 6, 10)
