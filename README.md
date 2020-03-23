@@ -69,7 +69,6 @@ Looking for a JSON API? Check out [this GitHub project](https://github.com/Antoi
 ## School holidays
 Interested in school holidays as well (vacances scolaires in French)? There is another pip package for this! Check out https://github.com/AntoineAugusti/vacances-scolaires-france
 
-## Notice
-This software is available under the MIT license and was developed as part of the [Entrepreneur d'Intérêt Général program](https://entrepreneur-interet-general.etalab.gouv.fr) by the French government.
-
-Projet développé dans le cadre du programme « [Entrepreneur d’intérêt général](https://entrepreneur-interet-general.etalab.gouv.fr) ».
+## Sources
+- [Code du travail : articles L3133-1 à L3133-3](https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000033008129&cidTexte=LEGITEXT000006072050)
+- [ Code du travail - Article L3422-2](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000035902463&cidTexte=LEGITEXT000006072050)
