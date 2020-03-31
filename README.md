@@ -1,9 +1,9 @@
-[![Software License](https://img.shields.io/badge/License-MIT-orange.svg?style=flat-square)](https://github.com/AntoineAugusti/jours-feries-france/blob/master/LICENSE.md)
-![CircleCI](https://img.shields.io/circleci/project/github/AntoineAugusti/jours-feries-france.svg?style=flat-square)
+[![Software License](https://img.shields.io/badge/License-MIT-orange.svg?style=flat-square)](https://github.com/etalab/jours-feries-france/blob/master/LICENSE.md)
+![CircleCI](https://img.shields.io/circleci/project/github/etalab/jours-feries-france.svg?style=flat-square)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/jours-feries-france.svg?style=flat-square)
 
-# Jours Fériés France
-This library computes bank holidays dates for France, for a given year.
+# Jours fériés France
+Cette librairie calcule les jours fériés en France.
 
 ## Installation
 ```
@@ -17,7 +17,7 @@ import datetime
 from jours_feries_france import JoursFeries
 
 res = JoursFeries.for_year(2018)
-# res is now a dict
+# res est un dictionnaire
 # {
 #     "Jour de l'an": date(2018, 1, 1),
 #     "Lundi de Pâques": date(2018, 4, 2),
@@ -32,24 +32,24 @@ res = JoursFeries.for_year(2018)
 #     "Noël": date(2018, 12, 25),
 # }
 
-# You can also get specific bank holidays as a datetime.date
+# Vous pouvez aussi obtenir certains jours fériés en tant que datetime.date
 print (JoursFeries.lundiDePaques(2018))
 print (JoursFeries.ascension(2018))
 print (JoursFeries.lundiDePentecote(2018))
 
-# Get bank holidays for a specific French zone.
+# Obtenir les jours fériés pour une zone spécifique
 res = JoursFeries.for_year(2018, zone="Alsace-Moselle")
 
-# Some helpers
+# Quelques fonctions d'aide
 JoursFeries.is_holiday(datetime.date(2019, 12, 25), zone="Métropole")
 # -> True
 JoursFeries.next_holiday(datetime.date(2019, 12, 24), zone="Métropole")
 # -> ('Noël', datetime.date(2019, 12, 25))
 ```
 
-### Available zones
-The following zones are available:
-- `Métropole` (default)
+### Zones disponibles
+Les zones suivantes sont disponibles :
+- `Métropole` (par défaut)
 - `Alsace-Moselle`
 - `Guadeloupe`
 - `Guyane`
@@ -62,14 +62,8 @@ The following zones are available:
 - `Saint-Martin`
 - `Wallis-et-Futuna`
 
-## Data
-If you just want a CSV dump, check out the ["Jours fériés en France" opendata dataset](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) available on data.gouv.fr.
-
-## REST API
-Looking for a JSON API? Check out [this GitHub project](https://github.com/AntoineAugusti/api-jours-feries-france).
-
-## School holidays
-Interested in school holidays as well (vacances scolaires in French)? There is another pip package for this! Check out https://github.com/AntoineAugusti/vacances-scolaires-france
+## Données
+Si vous souhaitez simplement un export, consultez le jeu de données ["Jours fériés en France" opendata dataset](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) sur data.gouv.fr.
 
 ## Sources
 - [Code du travail : articles L3133-1 à L3133-3](https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000033008129&cidTexte=LEGITEXT000006072050)
