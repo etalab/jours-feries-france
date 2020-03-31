@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 import unittest
 from datetime import date
 
-from jours_feries_france.compute import JoursFeries
+from jours_feries_france import JoursFeries
 
 
 class TestDatasetParser(unittest.TestCase):
@@ -44,7 +44,7 @@ class TestDatasetParser(unittest.TestCase):
             {
                 "Jour de l'an": date(2018, 1, 1),
                 "Lundi de Pâques": date(2018, 4, 2),
-                "Fête du travail": date(2018, 5, 1),
+                "Fête du Travail": date(2018, 5, 1),
                 "Victoire des alliés": date(2018, 5, 8),
                 "Ascension": date(2018, 5, 10),
                 "Lundi de Pentecôte": date(2018, 5, 21),
@@ -63,7 +63,7 @@ class TestDatasetParser(unittest.TestCase):
                 "Ascension": date(2020, 5, 21),
                 "Assomption": date(2020, 8, 15),
                 "Fête Nationale": date(2020, 7, 14),
-                "Fête du travail": date(2020, 5, 1),
+                "Fête du Travail": date(2020, 5, 1),
                 "Jour de l'an": date(2020, 1, 1),
                 "Lundi de Pâques": date(2020, 4, 13),
                 "Noël": date(2020, 12, 25),
@@ -81,7 +81,7 @@ class TestDatasetParser(unittest.TestCase):
                 "Ascension": date(2018, 5, 10),
                 "Assomption": date(2018, 8, 15),
                 "Fête Nationale": date(2018, 7, 14),
-                "Fête du travail": date(2018, 5, 1),
+                "Fête du Travail": date(2018, 5, 1),
                 "Jour de l'an": date(2018, 1, 1),
                 "Lundi de Pâques": date(2018, 4, 2),
                 "Noël": date(2018, 12, 25),
@@ -100,7 +100,7 @@ class TestDatasetParser(unittest.TestCase):
                 "Ascension": date(2020, 5, 21),
                 "Assomption": date(2020, 8, 15),
                 "Fête Nationale": date(2020, 7, 14),
-                "Fête du travail": date(2020, 5, 1),
+                "Fête du Travail": date(2020, 5, 1),
                 "Jour de l'an": date(2020, 1, 1),
                 "Lundi de Pâques": date(2020, 4, 13),
                 "Noël": date(2020, 12, 25),
@@ -124,7 +124,7 @@ class TestDatasetParser(unittest.TestCase):
         base = set(
             [
                 "Jour de l'an",
-                "Fête du travail",
+                "Fête du Travail",
                 "Victoire des alliés",
                 "Fête Nationale",
                 "Assomption",

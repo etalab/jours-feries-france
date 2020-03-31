@@ -12,14 +12,16 @@ pip install jours-feries-france
 
 ## Usage
 ```python
-from jours_feries_france.compute import JoursFeries
+import datetime
+
+from jours_feries_france import JoursFeries
 
 res = JoursFeries.for_year(2018)
 # res is now a dict
 # {
 #     "Jour de l'an": date(2018, 1, 1),
 #     "Lundi de Pâques": date(2018, 4, 2),
-#     "Fête du travail": date(2018, 5, 1),
+#     "Fête du Travail": date(2018, 5, 1),
 #     "Victoire des alliés": date(2018, 5, 8),
 #     "Ascension": date(2018, 5, 10),
 #     "Lundi de Pentecôte": date(2018, 5, 21),
