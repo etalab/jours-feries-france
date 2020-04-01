@@ -20,6 +20,17 @@ def add_event(calendar, name, date):
     calendar.events.add(event)
 
 
+def write_calendar(calendar, filename, name):
+    content = str(calendar).split("\n")
+
+    # Add calendar name
+    content.insert(2, f"NAME:{name}\r")
+    content.insert(2, f"X-WR-CALNAME:{name}\r")
+
+    with open(filename, "w") as f:
+        f.writelines(content)
+
+
 current_year = datetime.date.today().year
 START, END = -50, 5
 
@@ -36,15 +47,15 @@ for zone in JoursFeries.ZONES:
         bank_holidays = JoursFeries.for_year(year, zone)
 
         for nom_jour_ferie, the_date in bank_holidays.items():
-            is_recent = the_date.year in range(current_year - 5, current_year + 6)
-
             # Generate ICS calendar only from 5 years ago to 5 years in the future
+            is_recent = the_date.year in range(current_year - 5, current_year + 6)
             if is_recent:
                 add_event(calendar, nom_jour_ferie, the_date)
 
             data.append(
                 {
                     "date": the_date.strftime("%Y-%m-%d"),
+                    "annee": str(the_date.year),
                     "zone": zone,
                     "nom_jour_ferie": nom_jour_ferie,
                 }
@@ -60,5 +71,6 @@ for zone in JoursFeries.ZONES:
     df = pd.DataFrame(data)
     to_csv(df, f"data/csv/jours_feries_{zone_slug}.csv")
 
-    with open(f"data/ics/jours_feries_{zone_slug}.ics", "w") as my_file:
-        my_file.writelines(calendar)
+    write_calendar(
+        calendar, f"data/ics/jours_feries_{zone_slug}.ics", f"Jours fériés {zone}"
+    )
