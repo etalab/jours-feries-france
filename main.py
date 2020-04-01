@@ -31,6 +31,7 @@ for zone in JoursFeries.ZONES:
 
     data = []
     calendar = Calendar()
+    calendar.creator = "Etalab"
     for year in range(current_year + START, current_year + END + 1):
         bank_holidays = JoursFeries.for_year(year, zone)
 
@@ -51,7 +52,7 @@ for zone in JoursFeries.ZONES:
 
         with open(f"data/json/{zone_slug}/{year}.json", "w") as f:
             json.dump(
-                {k.strftime("%Y-%m-%d"): k for k, v in bank_holidays.items()},
+                {v.strftime("%Y-%m-%d"): k for k, v in bank_holidays.items()},
                 f,
                 ensure_ascii=False,
             )
