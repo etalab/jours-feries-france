@@ -29,7 +29,9 @@ class JoursFeries(object):
 
         if zone not in JoursFeries.ZONES:
             valid_values = ", ".join(JoursFeries.ZONES)
-            raise ValueError(f"{zone} is invalid. Supported values: {valid_values}")
+            raise ValueError(
+                "%s is invalid. Supported values: %s" % (zone, valid_values)
+            )
 
         return zone
 
