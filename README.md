@@ -63,7 +63,7 @@ Les zones suivantes sont disponibles :
 - `Wallis-et-Futuna`
 
 ## Données
-Si vous souhaitez simplement un export, consultez le jeu de données ["Jours fériés en France" opendata dataset](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) sur data.gouv.fr.
+Si vous souhaitez simplement un export, consultez le jeu de données ["Jours fériés en France"](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) sur data.gouv.fr.
 
 ## Sources
 - [Code du travail : articles L3133-1 à L3133-3](https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000033008129&cidTexte=LEGITEXT000006072050)
