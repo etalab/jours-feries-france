@@ -32,14 +32,22 @@ def write_calendar(calendar, filename, name):
         f.writelines(content)
 
 
+def write_json(filename, bank_holidays):
+    with open(f"data/json/{zone_slug}/{year}.json", "w") as f:
+        json.dump(
+            {v.strftime("%Y-%m-%d"): k for k, v in bank_holidays.items()},
+            f,
+            ensure_ascii=False,
+        )
+
+
 current_year = datetime.date.today().year
 START, END = -20, 5
 
 os.makedirs("data/csv", exist_ok=True)
 os.makedirs("data/ics", exist_ok=True)
 all_dates = defaultdict(list)
-for zone in JoursFeries.ZONES:
-    zone_slug = slugify(zone)
+for zone, zone_slug in [(z, slugify(z)) for z in JoursFeries.ZONES]:
     os.makedirs(f"data/json/{zone_slug}", exist_ok=True)
 
     data = []
@@ -64,15 +72,9 @@ for zone in JoursFeries.ZONES:
             )
             all_dates[(the_date.strftime("%Y-%m-%d"), nom_jour_ferie)].append(zone)
 
-        with open(f"data/json/{zone_slug}/{year}.json", "w") as f:
-            json.dump(
-                {v.strftime("%Y-%m-%d"): k for k, v in bank_holidays.items()},
-                f,
-                ensure_ascii=False,
-            )
+        write_json(f"data/json/{zone_slug}/{year}.json", bank_holidays)
 
-    df = pd.DataFrame(data)
-    to_csv(df, f"data/csv/jours_feries_{zone_slug}.csv")
+    to_csv(pd.DataFrame(data), f"data/csv/jours_feries_{zone_slug}.csv")
 
     write_calendar(
         calendar, f"data/ics/jours_feries_{zone_slug}.ics", f"Jours fériés {zone}"
