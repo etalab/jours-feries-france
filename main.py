@@ -1,6 +1,7 @@
 import os
 import json
 import datetime
+from collections import defaultdict
 
 import pandas as pd
 from ics import Calendar, Event
@@ -9,7 +10,7 @@ from slugify import slugify
 
 
 def to_csv(df, filename):
-    df.to_csv(filename, index=False, encoding="utf-8")
+    df.sort_values(by="date").to_csv(filename, index=False, encoding="utf-8")
 
 
 def add_event(calendar, name, date):
@@ -36,6 +37,7 @@ START, END = -50, 5
 
 os.makedirs("data/csv", exist_ok=True)
 os.makedirs("data/ics", exist_ok=True)
+all_dates = defaultdict(list)
 for zone in JoursFeries.ZONES:
     zone_slug = slugify(zone)
     os.makedirs(f"data/json/{zone_slug}", exist_ok=True)
@@ -60,6 +62,7 @@ for zone in JoursFeries.ZONES:
                     "nom_jour_ferie": nom_jour_ferie,
                 }
             )
+            all_dates[(the_date.strftime("%Y-%m-%d"), nom_jour_ferie)].append(zone)
 
         with open(f"data/json/{zone_slug}/{year}.json", "w") as f:
             json.dump(
@@ -74,3 +77,8 @@ for zone in JoursFeries.ZONES:
     write_calendar(
         calendar, f"data/ics/jours_feries_{zone_slug}.ics", f"Jours fériés {zone}"
     )
+
+res = []
+for (date, name), zones in all_dates.items():
+    res.append({"date": date, "nom_jour_ferie": name, "zones": "|".join(zones)})
+to_csv(pd.DataFrame(res), f"data/csv/jours_feries.csv")
