@@ -33,7 +33,7 @@ def write_calendar(calendar, filename, name):
 
 
 current_year = datetime.date.today().year
-START, END = -50, 5
+START, END = -20, 5
 
 os.makedirs("data/csv", exist_ok=True)
 os.makedirs("data/ics", exist_ok=True)
