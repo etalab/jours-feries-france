@@ -149,6 +149,7 @@ class TestDatasetParser(unittest.TestCase):
             ["Saint-Barthélémy", set(["Abolition de l'esclavage"])],
             ["Saint-Martin", set(["Abolition de l'esclavage"])],
             ["Wallis-et-Futuna", set()],
+            ["Saint-Pierre-et-Miquelon", set()],
         ]
 
         self.assertSetEqual(names(JoursFeries.for_year(2020, "Métropole")), base)

@@ -53,13 +53,14 @@ Les zones suivantes sont disponibles :
 - `Alsace-Moselle`
 - `Guadeloupe`
 - `Guyane`
+- `La Réunion`
 - `Martinique`
 - `Mayotte`
 - `Nouvelle-Calédonie`
-- `La Réunion`
 - `Polynésie Française`
 - `Saint-Barthélémy`
 - `Saint-Martin`
+- `Saint-Pierre-et-Miquelon`
 - `Wallis-et-Futuna`
 
 ## Données

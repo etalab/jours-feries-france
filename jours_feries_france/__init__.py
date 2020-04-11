@@ -18,6 +18,7 @@ class JoursFeries(object):
         "Saint-Barthélémy",
         "Saint-Martin",
         "Wallis-et-Futuna",
+        "Saint-Pierre-et-Miquelon",
     ]
 
     def __init__(self):
