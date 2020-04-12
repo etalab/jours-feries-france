@@ -50,7 +50,8 @@ all_dates = defaultdict(list)
 for zone, zone_slug in [(z, slugify(z)) for z in JoursFeries.ZONES]:
     os.makedirs(f"data/json/{zone_slug}", exist_ok=True)
 
-    data = []
+    csv_data = []
+    json_data = {}
     calendar = Calendar()
     calendar.creator = "Etalab"
     for year in range(current_year + START, current_year + END + 1):
@@ -62,7 +63,7 @@ for zone, zone_slug in [(z, slugify(z)) for z in JoursFeries.ZONES]:
             if is_recent:
                 add_event(calendar, nom_jour_ferie, the_date)
 
-            data.append(
+            csv_data.append(
                 {
                     "date": the_date.strftime("%Y-%m-%d"),
                     "annee": str(the_date.year),
@@ -72,9 +73,12 @@ for zone, zone_slug in [(z, slugify(z)) for z in JoursFeries.ZONES]:
             )
             all_dates[(the_date.strftime("%Y-%m-%d"), nom_jour_ferie)].append(zone)
 
-        write_json(f"data/json/{zone_slug}/{year}.json", bank_holidays)
+        json_for_year = {v: k for k, v in bank_holidays.items()}
+        write_json(f"data/json/{zone_slug}/{year}.json", json_for_year)
+        json_data = {**json_for_year, **json_data}
 
-    to_csv(pd.DataFrame(data), f"data/csv/jours_feries_{zone_slug}.csv")
+    to_csv(pd.DataFrame(csv_data), f"data/csv/jours_feries_{zone_slug}.csv")
+    write_json(f"data/json/{zone_slug}.json", json_data)
 
     write_calendar(
         calendar, f"data/ics/jours_feries_{zone_slug}.ics", f"Jours fériés {zone}"
