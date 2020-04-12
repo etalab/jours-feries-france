@@ -33,9 +33,9 @@ def write_calendar(calendar, filename, name):
 
 
 def write_json(filename, bank_holidays):
-    with open(f"data/json/{zone_slug}/{year}.json", "w") as f:
+    with open(filename, "w") as f:
         json.dump(
-            {v.strftime("%Y-%m-%d"): k for k, v in bank_holidays.items()},
+            {k.strftime("%Y-%m-%d"): v for k, v in bank_holidays.items()},
             f,
             ensure_ascii=False,
         )
