@@ -41,9 +41,9 @@ print (JoursFeries.lundiDePentecote(2018))
 res = JoursFeries.for_year(2018, zone="Alsace-Moselle")
 
 # Quelques fonctions d'aide
-JoursFeries.is_holiday(datetime.date(2019, 12, 25), zone="Métropole")
+JoursFeries.is_bank_holiday(datetime.date(2019, 12, 25), zone="Métropole")
 # -> True
-JoursFeries.next_holiday(datetime.date(2019, 12, 24), zone="Métropole")
+JoursFeries.next_bank_holiday(datetime.date(2019, 12, 24), zone="Métropole")
 # -> ('Noël', datetime.date(2019, 12, 25))
 ```
 

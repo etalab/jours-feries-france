@@ -37,12 +37,12 @@ class JoursFeries(object):
         return zone
 
     @staticmethod
-    def is_holiday(date, zone=None):
+    def is_bank_holiday(date, zone=None):
         return date in JoursFeries.for_year(date.year, zone).values()
 
     @staticmethod
-    def next_holiday(date, zone=None):
-        while not JoursFeries.is_holiday(date, zone):
+    def next_bank_holiday(date, zone=None):
+        while not JoursFeries.is_bank_holiday(date, zone):
             date = date + timedelta(days=1)
 
         return [
@@ -55,7 +55,7 @@ class JoursFeries(object):
     def for_year(year, zone=None):
         JoursFeries.check_zone(zone)
 
-        holidays = {
+        bank_holidays = {
             "Jour de l'an": JoursFeries.jourDeLAn(year),
             "Fête du Travail": JoursFeries.feteDuTravail(year),
             "Victoire des alliés": JoursFeries.victoireDesAllies(year),
@@ -72,9 +72,11 @@ class JoursFeries(object):
             "Abolition de l'esclavage": JoursFeries.abolitionDeLesclavage(year, zone),
         }
 
-        holidays = {k: v for k, v in holidays.items() if v}
+        bank_holidays = {k: v for k, v in bank_holidays.items() if v}
 
-        return {k: v for k, v in sorted(holidays.items(), key=lambda item: item[1])}
+        return {
+            k: v for k, v in sorted(bank_holidays.items(), key=lambda item: item[1])
+        }
 
     @staticmethod
     def paques(year):

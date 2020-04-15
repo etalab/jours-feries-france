@@ -12,30 +12,34 @@ class TestDatasetParser(unittest.TestCase):
         with self.assertRaises(ValueError):
             JoursFeries.for_year(2018, zone="foo")
 
-    def test_is_holiday(self):
-        self.assertTrue(JoursFeries.is_holiday(date(2019, 12, 25)))
-        self.assertTrue(JoursFeries.is_holiday(date(2019, 12, 25), zone="Métropole"))
+    def test_is_bank_holiday(self):
+        self.assertTrue(JoursFeries.is_bank_holiday(date(2019, 12, 25)))
         self.assertTrue(
-            JoursFeries.is_holiday(date(2019, 12, 26), zone="Alsace-Moselle")
+            JoursFeries.is_bank_holiday(date(2019, 12, 25), zone="Métropole")
+        )
+        self.assertTrue(
+            JoursFeries.is_bank_holiday(date(2019, 12, 26), zone="Alsace-Moselle")
         )
 
-        self.assertFalse(JoursFeries.is_holiday(date(2019, 12, 26)))
-        self.assertFalse(JoursFeries.is_holiday(date(2019, 12, 26), zone="Métropole"))
+        self.assertFalse(JoursFeries.is_bank_holiday(date(2019, 12, 26)))
+        self.assertFalse(
+            JoursFeries.is_bank_holiday(date(2019, 12, 26), zone="Métropole")
+        )
 
-    def test_next_holiday(self):
+    def test_next_bank_holiday(self):
         self.assertEquals(
             ("Armistice", date(2018, 11, 11)),
-            JoursFeries.next_holiday(date(2018, 11, 10)),
+            JoursFeries.next_bank_holiday(date(2018, 11, 10)),
         )
 
         self.assertEquals(
             ("Armistice", date(2018, 11, 11)),
-            JoursFeries.next_holiday(date(2018, 11, 11), zone="Métropole"),
+            JoursFeries.next_bank_holiday(date(2018, 11, 11), zone="Métropole"),
         )
 
         self.assertEquals(
             ("Noël", date(2018, 12, 25)),
-            JoursFeries.next_holiday(date(2018, 12, 11), zone="Métropole"),
+            JoursFeries.next_bank_holiday(date(2018, 12, 11), zone="Métropole"),
         )
 
     def test_for_year(self):
