@@ -3,7 +3,9 @@
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/jours-feries-france.svg?style=flat-square)
 
 # Jours fériés France
-Cette librairie calcule les jours fériés en France.
+Cette librairie calcule les jours fériés en France. Vous pouvez découvrir plus de détails sur les jours fériés français sur [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/F2405).
+
+Cette librairie fonctionne à partir de la version 2.7 de Python.
 
 ## Installation
 ```
@@ -16,6 +18,7 @@ import datetime
 
 from jours_feries_france import JoursFeries
 
+# Obtenir les jours fériés pour une année, pour la métropole
 res = JoursFeries.for_year(2018)
 # res est un dictionnaire
 # {
@@ -67,5 +70,14 @@ Les zones suivantes sont disponibles :
 Si vous souhaitez simplement un export, consultez le jeu de données ["Jours fériés en France"](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) sur data.gouv.fr.
 
 ## Sources
+La liste des jours fériés est définie dans le code du travail.
+
+Certaines commémorations locales ou professionnelles sont également des jours fériés, parmi lesquelles :
+- Saint-Éloi (reconnu jour férié par certaines conventions collectives dans la métallurgie) ;
+- Sainte-Barbe (pour les salariés travaillant dans les mines) ;
+- Mi-carême dans certains DOM.
+
+Ces fêtes locales ou professionnelles ne sont pas disponibles dans cette librairie.
+
 - [Code du travail : articles L3133-1 à L3133-3](https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000033008129&cidTexte=LEGITEXT000006072050)
-- [ Code du travail - Article L3422-2](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000035902463&cidTexte=LEGITEXT000006072050)
+- [Code du travail - Article L3422-2](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000035902463&cidTexte=LEGITEXT000006072050)
