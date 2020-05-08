@@ -1,9 +1,11 @@
-[![Software License](https://img.shields.io/badge/License-MIT-orange.svg?style=flat-square)](https://github.com/AntoineAugusti/jours-feries-france/blob/master/LICENSE.md)
-![CircleCI](https://img.shields.io/circleci/project/github/AntoineAugusti/jours-feries-france.svg?style=flat-square)
+[![Software License](https://img.shields.io/badge/License-MIT-orange.svg?style=flat-square)](https://github.com/etalab/jours-feries-france/blob/master/LICENSE.md)
+![CircleCI](https://img.shields.io/circleci/project/github/etalab/jours-feries-france.svg?style=flat-square)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/jours-feries-france.svg?style=flat-square)
 
-# Jours Fériés France
-This library computes bank holidays dates for France, for a given year.
+# Jours fériés France
+Cette librairie calcule les jours fériés en France. Vous pouvez découvrir plus de détails sur les jours fériés français sur [service-public.fr](https://www.service-public.fr/particuliers/vosdroits/F2405).
+
+Cette librairie fonctionne à partir de la version 2.7 de Python.
 
 ## Installation
 ```
@@ -12,55 +14,70 @@ pip install jours-feries-france
 
 ## Usage
 ```python
-from jours_feries_france.compute import JoursFeries
+import datetime
 
+from jours_feries_france import JoursFeries
+
+# Obtenir les jours fériés pour une année, pour la métropole
 res = JoursFeries.for_year(2018)
-# res is now a dict
+# res est un dictionnaire
 # {
-#     'Armistice': datetime.date(2018, 11, 11),
-#     'Ascension': datetime.date(2018, 5, 10),
-#     'Assomption': datetime.date(2018, 8, 15),
-#     'Fête Nationale': datetime.date(2018, 7, 14),
-#     'Fête du travail': datetime.date(2018, 5, 1),
-#     "Jour de l'an": datetime.date(2018, 1, 1),
-#     'Lundi de Pâques': datetime.date(2018, 4, 2),
-#     'Noël': datetime.date(2018, 12, 25),
-#     'Lundi de Pentecôte': datetime.date(2018, 5, 21),
-#     'Toussaint': datetime.date(2018, 11, 1),
-#     'Victoire des alliés': datetime.date(2018, 5, 8)
+#     "Jour de l'an": date(2018, 1, 1),
+#     "Lundi de Pâques": date(2018, 4, 2),
+#     "Fête du Travail": date(2018, 5, 1),
+#     "Victoire des alliés": date(2018, 5, 8),
+#     "Ascension": date(2018, 5, 10),
+#     "Lundi de Pentecôte": date(2018, 5, 21),
+#     "Fête Nationale": date(2018, 7, 14),
+#     "Assomption": date(2018, 8, 15),
+#     "Toussaint": date(2018, 11, 1),
+#     "Armistice": date(2018, 11, 11),
+#     "Noël": date(2018, 12, 25),
 # }
 
-# You can also get specific bank holidays as a datetime.date
+# Vous pouvez aussi obtenir certains jours fériés en tant que datetime.date
 print (JoursFeries.lundiDePaques(2018))
 print (JoursFeries.ascension(2018))
-print (JoursFeries.pentecote(2018))
-print (JoursFeries.jourDeLAn(2018))
-print (JoursFeries.feteDuTravail(2018))
-print (JoursFeries.victoireDesAllies(2018))
-print (JoursFeries.feteNationale(2018))
-print (JoursFeries.toussaint(2018))
-print (JoursFeries.assomption(2018))
-print (JoursFeries.armistice(2018))
-print (JoursFeries.noel(2018))
+print (JoursFeries.lundiDePentecote(2018))
 
-# The Alsace-Moselle region has 2 extra bank holidays.
-# You can include them this way
-res = JoursFeries.for_year(2018, include_alsace=True)
+# Obtenir les jours fériés pour une zone spécifique
+res = JoursFeries.for_year(2018, zone="Alsace-Moselle")
 
-print (JoursFeries.vendrediSaint(2018))
-print (JoursFeries.saintEtienne(2018))
+# Quelques fonctions d'aide
+JoursFeries.is_bank_holiday(datetime.date(2019, 12, 25), zone="Métropole")
+# -> True
+JoursFeries.next_bank_holiday(datetime.date(2019, 12, 24), zone="Métropole")
+# -> ('Noël', datetime.date(2019, 12, 25))
 ```
 
-## Data
-If you just want a CSV dump, check out the ["Jours fériés en France" opendata dataset](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) available on data.gouv.fr.
+### Zones disponibles
+Les zones suivantes sont disponibles :
+- `Métropole` (par défaut)
+- `Alsace-Moselle`
+- `Guadeloupe`
+- `Guyane`
+- `La Réunion`
+- `Martinique`
+- `Mayotte`
+- `Nouvelle-Calédonie`
+- `Polynésie Française`
+- `Saint-Barthélémy`
+- `Saint-Martin`
+- `Saint-Pierre-et-Miquelon`
+- `Wallis-et-Futuna`
 
-## REST API
-Looking for a JSON API? Check out [this GitHub project](https://github.com/AntoineAugusti/api-jours-feries-france).
+## Données
+Si vous souhaitez simplement un export, consultez le jeu de données ["Jours fériés en France"](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) sur data.gouv.fr.
 
-## School holidays
-Interested in school holidays as well (vacances scolaires in French)? There is another pip package for this! Check out https://github.com/AntoineAugusti/vacances-scolaires-france
+## Sources
+La liste des jours fériés est définie dans le code du travail.
 
-## Notice
-This software is available under the MIT license and was developed as part of the [Entrepreneur d'Intérêt Général program](https://entrepreneur-interet-general.etalab.gouv.fr) by the French government.
+Certaines commémorations locales ou professionnelles sont également des jours fériés, parmi lesquelles :
+- Saint-Éloi (reconnu jour férié par certaines conventions collectives dans la métallurgie) ;
+- Sainte-Barbe (pour les salariés travaillant dans les mines) ;
+- Mi-carême dans certains DOM.
 
-Projet développé dans le cadre du programme « [Entrepreneur d’intérêt général](https://entrepreneur-interet-general.etalab.gouv.fr) ».
+Ces fêtes locales ou professionnelles ne sont pas disponibles dans cette librairie.
+
+- [Code du travail : articles L3133-1 à L3133-3](https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000033008129&cidTexte=LEGITEXT000006072050)
+- [Code du travail - Article L3422-2](https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000035902463&cidTexte=LEGITEXT000006072050)
