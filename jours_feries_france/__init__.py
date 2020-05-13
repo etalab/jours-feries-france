@@ -56,19 +56,19 @@ class JoursFeries(object):
         JoursFeries.check_zone(zone)
 
         bank_holidays = {
-            "Jour de l'an": JoursFeries.jourDeLAn(year),
-            "Fête du Travail": JoursFeries.feteDuTravail(year),
-            "Victoire des alliés": JoursFeries.victoireDesAllies(year),
-            "Fête Nationale": JoursFeries.feteNationale(year),
+            "1er janvier": JoursFeries.jourDeLAn(year),
+            "1er mai": JoursFeries.feteDuTravail(year),
+            "8 mai": JoursFeries.victoireDesAllies(year),
+            "14 juillet": JoursFeries.feteNationale(year),
             "Assomption": JoursFeries.assomption(year),
             "Toussaint": JoursFeries.toussaint(year),
-            "Armistice": JoursFeries.armistice(year),
-            "Noël": JoursFeries.noel(year),
+            "11 novembre": JoursFeries.armistice(year),
+            "Jour de Noël": JoursFeries.noel(year),
             "Lundi de Pâques": JoursFeries.lundiDePaques(year),
             "Ascension": JoursFeries.ascension(year),
             "Lundi de Pentecôte": JoursFeries.lundiDePentecote(year),
-            "Vendredi Saint": JoursFeries.vendrediSaint(year, zone),
-            "Saint Étienne": JoursFeries.saintEtienne(year, zone),
+            "Vendredi saint": JoursFeries.vendrediSaint(year, zone),
+            "2ème jour de Noël": JoursFeries.saintEtienne(year, zone),
             "Abolition de l'esclavage": JoursFeries.abolitionDeLesclavage(year, zone),
         }
 

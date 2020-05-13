@@ -28,17 +28,17 @@ class TestDatasetParser(unittest.TestCase):
 
     def test_next_bank_holiday(self):
         self.assertEquals(
-            ("Armistice", date(2018, 11, 11)),
+            ("11 novembre", date(2018, 11, 11)),
             JoursFeries.next_bank_holiday(date(2018, 11, 10)),
         )
 
         self.assertEquals(
-            ("Armistice", date(2018, 11, 11)),
+            ("11 novembre", date(2018, 11, 11)),
             JoursFeries.next_bank_holiday(date(2018, 11, 11), zone="Métropole"),
         )
 
         self.assertEquals(
-            ("Noël", date(2018, 12, 25)),
+            ("Jour de Noël", date(2018, 12, 25)),
             JoursFeries.next_bank_holiday(date(2018, 12, 11), zone="Métropole"),
         )
 
@@ -46,34 +46,34 @@ class TestDatasetParser(unittest.TestCase):
         self.assertDictEqual(
             JoursFeries.for_year(2018),
             {
-                "Jour de l'an": date(2018, 1, 1),
+                "1er janvier": date(2018, 1, 1),
                 "Lundi de Pâques": date(2018, 4, 2),
-                "Fête du Travail": date(2018, 5, 1),
-                "Victoire des alliés": date(2018, 5, 8),
+                "1er mai": date(2018, 5, 1),
+                "8 mai": date(2018, 5, 8),
                 "Ascension": date(2018, 5, 10),
                 "Lundi de Pentecôte": date(2018, 5, 21),
-                "Fête Nationale": date(2018, 7, 14),
+                "14 juillet": date(2018, 7, 14),
                 "Assomption": date(2018, 8, 15),
                 "Toussaint": date(2018, 11, 1),
-                "Armistice": date(2018, 11, 11),
-                "Noël": date(2018, 12, 25),
+                "11 novembre": date(2018, 11, 11),
+                "Jour de Noël": date(2018, 12, 25),
             },
         )
 
         self.assertDictEqual(
             JoursFeries.for_year(2020),
             {
-                "Armistice": date(2020, 11, 11),
+                "11 novembre": date(2020, 11, 11),
                 "Ascension": date(2020, 5, 21),
                 "Assomption": date(2020, 8, 15),
-                "Fête Nationale": date(2020, 7, 14),
-                "Fête du Travail": date(2020, 5, 1),
-                "Jour de l'an": date(2020, 1, 1),
+                "14 juillet": date(2020, 7, 14),
+                "1er mai": date(2020, 5, 1),
+                "1er janvier": date(2020, 1, 1),
                 "Lundi de Pâques": date(2020, 4, 13),
-                "Noël": date(2020, 12, 25),
+                "Jour de Noël": date(2020, 12, 25),
                 "Lundi de Pentecôte": date(2020, 6, 1),
                 "Toussaint": date(2020, 11, 1),
-                "Victoire des alliés": date(2020, 5, 8),
+                "8 mai": date(2020, 5, 8),
             },
         )
 
@@ -81,38 +81,38 @@ class TestDatasetParser(unittest.TestCase):
         self.assertDictEqual(
             JoursFeries.for_year(2018, zone="Alsace-Moselle"),
             {
-                "Armistice": date(2018, 11, 11),
+                "11 novembre": date(2018, 11, 11),
                 "Ascension": date(2018, 5, 10),
                 "Assomption": date(2018, 8, 15),
-                "Fête Nationale": date(2018, 7, 14),
-                "Fête du Travail": date(2018, 5, 1),
-                "Jour de l'an": date(2018, 1, 1),
+                "14 juillet": date(2018, 7, 14),
+                "1er mai": date(2018, 5, 1),
+                "1er janvier": date(2018, 1, 1),
                 "Lundi de Pâques": date(2018, 4, 2),
-                "Noël": date(2018, 12, 25),
+                "Jour de Noël": date(2018, 12, 25),
                 "Lundi de Pentecôte": date(2018, 5, 21),
                 "Toussaint": date(2018, 11, 1),
-                "Victoire des alliés": date(2018, 5, 8),
-                "Vendredi Saint": date(2018, 3, 30),
-                "Saint Étienne": date(2018, 12, 26),
+                "8 mai": date(2018, 5, 8),
+                "Vendredi saint": date(2018, 3, 30),
+                "2ème jour de Noël": date(2018, 12, 26),
             },
         )
 
         self.assertDictEqual(
             JoursFeries.for_year(2020, zone="Alsace-Moselle"),
             {
-                "Armistice": date(2020, 11, 11),
+                "11 novembre": date(2020, 11, 11),
                 "Ascension": date(2020, 5, 21),
                 "Assomption": date(2020, 8, 15),
-                "Fête Nationale": date(2020, 7, 14),
-                "Fête du Travail": date(2020, 5, 1),
-                "Jour de l'an": date(2020, 1, 1),
+                "14 juillet": date(2020, 7, 14),
+                "1er mai": date(2020, 5, 1),
+                "1er janvier": date(2020, 1, 1),
                 "Lundi de Pâques": date(2020, 4, 13),
-                "Noël": date(2020, 12, 25),
+                "Jour de Noël": date(2020, 12, 25),
                 "Lundi de Pentecôte": date(2020, 6, 1),
                 "Toussaint": date(2020, 11, 1),
-                "Victoire des alliés": date(2020, 5, 8),
-                "Vendredi Saint": date(2020, 4, 10),
-                "Saint Étienne": date(2020, 12, 26),
+                "8 mai": date(2020, 5, 8),
+                "Vendredi saint": date(2020, 4, 10),
+                "2ème jour de Noël": date(2020, 12, 26),
             },
         )
 
@@ -127,14 +127,14 @@ class TestDatasetParser(unittest.TestCase):
 
         base = set(
             [
-                "Jour de l'an",
-                "Fête du Travail",
-                "Victoire des alliés",
-                "Fête Nationale",
+                "1er janvier",
+                "1er mai",
+                "8 mai",
+                "14 juillet",
                 "Assomption",
                 "Toussaint",
-                "Armistice",
-                "Noël",
+                "11 novembre",
+                "Jour de Noël",
                 "Lundi de Pâques",
                 "Ascension",
                 "Lundi de Pentecôte",
@@ -142,11 +142,11 @@ class TestDatasetParser(unittest.TestCase):
         )
 
         extra_holidays = [
-            ["Alsace-Moselle", set(["Vendredi Saint", "Saint Étienne"])],
-            ["Guadeloupe", set(["Abolition de l'esclavage"]),],
+            ["Alsace-Moselle", set(["Vendredi saint", "2ème jour de Noël"])],
+            ["Guadeloupe", set(["Abolition de l'esclavage"])],
             ["Guyane", set(["Abolition de l'esclavage"])],
-            ["Martinique", set(["Abolition de l'esclavage"]),],
-            ["Mayotte", set(["Abolition de l'esclavage"]),],
+            ["Martinique", set(["Abolition de l'esclavage"])],
+            ["Mayotte", set(["Abolition de l'esclavage"])],
             ["Nouvelle-Calédonie", set()],
             ["La Réunion", set(["Abolition de l'esclavage"])],
             ["Polynésie Française", set()],
