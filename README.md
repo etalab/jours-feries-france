@@ -36,9 +36,9 @@ res = JoursFeries.for_year(2018)
 # }
 
 # Vous pouvez aussi obtenir certains jours fériés en tant que datetime.date
-print (JoursFeries.lundiDePaques(2018))
+print (JoursFeries.lundi_paques(2018))
 print (JoursFeries.ascension(2018))
-print (JoursFeries.lundiDePentecote(2018))
+print (JoursFeries.lundi_pentecote(2018))
 
 # Obtenir les jours fériés pour une zone spécifique
 res = JoursFeries.for_year(2018, zone="Alsace-Moselle")
@@ -101,6 +101,34 @@ Pour la zone `Alsace-Moselle`, il existe 2 jours fériés supplémentaires, orth
 
 Pour les zones `Guadeloupe`, `Guyane`, `La Réunion`, `Martinique`, `Mayotte`, `Saint-Barthélémy` et `Saint-Martin`, il existe un jour férié supplémentaire, orthographié de la façon suivante :
 - `Abolition de l'esclavage`
+
+### Noms des méthodes Python
+
+Vous pouvez calculer chaque jour férié individuellement à l'aide d'une méthode spécifique.
+
+```python
+from jours_feries_france import JoursFeries
+
+year = 2020
+zone = 'Métropole'
+
+print("1er janvier", JoursFeries.premier_janvier(year))
+print("1er mai", JoursFeries.premier_mai(year))
+print("8 mai", JoursFeries.huit_mai(year))
+print("14 juillet", JoursFeries.quatorze_juillet(year))
+print("Assomption", JoursFeries.assomption(year))
+print("Toussaint", JoursFeries.toussaint(year))
+print("11 novembre", JoursFeries.onze_novembre(year))
+print("Jour de Noël", JoursFeries.jour_noel(year))
+print("Lundi de Pâques", JoursFeries.lundi_paques(year))
+print("Ascension", JoursFeries.ascension(year))
+print("Lundi de Pentecôte", JoursFeries.lundi_pentecote(year))
+print("Vendredi saint", JoursFeries.vendredi_saint(year, zone))
+print("2ème jour de Noël", JoursFeries.deuxieme_jour_noel(year, zone))
+print("Abolition de l'esclavage", JoursFeries.abolition_esclavage(year, zone))
+```
+
+Certaines méthodes acceptent une `zone` en paramètre car ce jour férié est spécifique à certaines zones. Si ce jour férié n'est pas férié pour la zone passée en argument, vous aurez la valeur `None` en retour au lieu d'une date.
 
 ## Données
 Si vous souhaitez simplement un export, consultez le jeu de données ["Jours fériés en France"](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) sur data.gouv.fr.

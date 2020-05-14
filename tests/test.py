@@ -168,7 +168,7 @@ class TestDatasetParser(unittest.TestCase):
             JoursFeries.ZONES, ["Métropole"] + [e[0] for e in extra_holidays]
         )
 
-    def testAbolitionDeLesclavage(self):
+    def testAbolition_esclavage(self):
         tests = [
             ("Mayotte", date(2020, 4, 27)),
             ("Martinique", date(2020, 5, 22)),
@@ -184,16 +184,16 @@ class TestDatasetParser(unittest.TestCase):
             zone, expected_date = test
             zones.add(zone)
             self.assertEquals(
-                JoursFeries.abolitionDeLesclavage(2020, zone), expected_date
+                JoursFeries.abolition_esclavage(2020, zone), expected_date
             )
 
         for zone in [z for z in JoursFeries.ZONES if z not in zones]:
-            self.assertEquals(JoursFeries.abolitionDeLesclavage(2020, zone), None)
+            self.assertEquals(JoursFeries.abolition_esclavage(2020, zone), None)
 
         # Saint-Martin
         self.assertEquals(
-            JoursFeries.abolitionDeLesclavage(2017, "Saint-Martin"), date(2017, 5, 27)
+            JoursFeries.abolition_esclavage(2017, "Saint-Martin"), date(2017, 5, 27)
         )
         self.assertEquals(
-            JoursFeries.abolitionDeLesclavage(2018, "Saint-Martin"), date(2018, 5, 28)
+            JoursFeries.abolition_esclavage(2018, "Saint-Martin"), date(2018, 5, 28)
         )
