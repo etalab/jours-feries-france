@@ -4,7 +4,7 @@ setup(
     name="jours_feries_france",
     license="MIT",
     packages=["jours_feries_france"],
-    version="0.6.0",
+    version="0.7.0",
     description="Jours fériés en France, en métropole et en outre-mer.",
     author="Etalab",
     author_email="info@data.gouv.fr",
