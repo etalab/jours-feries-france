@@ -56,20 +56,20 @@ class JoursFeries(object):
         JoursFeries.check_zone(zone)
 
         bank_holidays = {
-            "Jour de l'an": JoursFeries.jourDeLAn(year),
-            "Fête du Travail": JoursFeries.feteDuTravail(year),
-            "Victoire des alliés": JoursFeries.victoireDesAllies(year),
-            "Fête Nationale": JoursFeries.feteNationale(year),
+            "1er janvier": JoursFeries.premier_janvier(year),
+            "1er mai": JoursFeries.premier_mai(year),
+            "8 mai": JoursFeries.huit_mai(year),
+            "14 juillet": JoursFeries.quatorze_juillet(year),
             "Assomption": JoursFeries.assomption(year),
             "Toussaint": JoursFeries.toussaint(year),
-            "Armistice": JoursFeries.armistice(year),
-            "Noël": JoursFeries.noel(year),
-            "Lundi de Pâques": JoursFeries.lundiDePaques(year),
+            "11 novembre": JoursFeries.onze_novembre(year),
+            "Jour de Noël": JoursFeries.jour_noel(year),
+            "Lundi de Pâques": JoursFeries.lundi_paques(year),
             "Ascension": JoursFeries.ascension(year),
-            "Lundi de Pentecôte": JoursFeries.lundiDePentecote(year),
-            "Vendredi Saint": JoursFeries.vendrediSaint(year, zone),
-            "Saint Étienne": JoursFeries.saintEtienne(year, zone),
-            "Abolition de l'esclavage": JoursFeries.abolitionDeLesclavage(year, zone),
+            "Lundi de Pentecôte": JoursFeries.lundi_pentecote(year),
+            "Vendredi saint": JoursFeries.vendredi_saint(year, zone),
+            "2ème jour de Noël": JoursFeries.deuxieme_jour_noel(year, zone),
+            "Abolition de l'esclavage": JoursFeries.abolition_esclavage(year, zone),
         }
 
         bank_holidays = {k: v for k, v in bank_holidays.items() if v}
@@ -93,13 +93,13 @@ class JoursFeries(object):
         return date(year, month, day)
 
     @staticmethod
-    def lundiDePaques(year):
+    def lundi_paques(year):
         if year >= 1886:
             return JoursFeries.paques(year) + timedelta(days=1)
         return None
 
     @staticmethod
-    def vendrediSaint(year, zone):
+    def vendredi_saint(year, zone):
         if zone == JoursFeries.check_zone("Alsace-Moselle"):
             return JoursFeries.paques(year) - timedelta(days=2)
         return None
@@ -111,31 +111,31 @@ class JoursFeries(object):
         return None
 
     @staticmethod
-    def lundiDePentecote(year):
+    def lundi_pentecote(year):
         if year >= 1886:
             return JoursFeries.paques(year) + timedelta(days=50)
         return None
 
     @staticmethod
-    def jourDeLAn(year):
+    def premier_janvier(year):
         if year > 1810:
             return date(year, 1, 1)
         return None
 
     @staticmethod
-    def feteDuTravail(year):
+    def premier_mai(year):
         if year > 1919:
             return date(year, 5, 1)
         return None
 
     @staticmethod
-    def victoireDesAllies(year):
+    def huit_mai(year):
         if (1953 <= year <= 1959) or year > 1981:
             return date(year, 5, 8)
         return None
 
     @staticmethod
-    def feteNationale(year):
+    def quatorze_juillet(year):
         if year >= 1880:
             return date(year, 7, 14)
         return None
@@ -153,25 +153,25 @@ class JoursFeries(object):
         return None
 
     @staticmethod
-    def armistice(year):
+    def onze_novembre(year):
         if year >= 1918:
             return date(year, 11, 11)
         return None
 
     @staticmethod
-    def noel(year):
+    def jour_noel(year):
         if year >= 1802:
             return date(year, 12, 25)
         return None
 
     @staticmethod
-    def saintEtienne(year, zone):
+    def deuxieme_jour_noel(year, zone):
         if zone == JoursFeries.check_zone("Alsace-Moselle"):
             return date(year, 12, 26)
         return None
 
     @staticmethod
-    def abolitionDeLesclavage(year, zone):
+    def abolition_esclavage(year, zone):
         if zone == JoursFeries.check_zone("Mayotte"):
             return date(year, 4, 27)
 
