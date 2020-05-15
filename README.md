@@ -80,7 +80,7 @@ print(JoursFeries.ZONES)
 ```
 
 ### Noms des jours fériés
-Les noms des jours fériés sont fixés d'après le code du travail.
+Les noms des jours fériés sont fixés d'[après le code du travail](#sources).
 
 Pour les zones `Métropole` (par défaut), `Nouvelle-Calédonie`, `Polynésie Française`, `Saint-Pierre-et-Miquelon` et `Wallis-et-Futuna`, les jours fériés sont orthographiés de la façon suivante :
 - `1er janvier`
@@ -134,7 +134,7 @@ Certaines méthodes acceptent une `zone` en paramètre car ce jour férié est s
 Si vous souhaitez simplement un export, consultez le jeu de données ["Jours fériés en France"](https://www.data.gouv.fr/fr/datasets/jours-feries-en-france/) sur data.gouv.fr.
 
 ## Sources
-La liste des jours fériés est définie dans le code du travail.
+La liste des jours fériés est définie [dans le code du travail](#sources).
 
 Certaines commémorations locales ou professionnelles sont également des jours fériés, parmi lesquelles :
 - Saint-Éloi (reconnu jour férié par certaines conventions collectives dans la métallurgie) ;
