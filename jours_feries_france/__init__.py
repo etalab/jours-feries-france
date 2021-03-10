@@ -205,3 +205,4 @@ class JoursFeries(object):
         if day in days_off:
             return True
         return False
+        
