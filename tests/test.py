@@ -197,3 +197,12 @@ class TestDatasetParser(unittest.TestCase):
         self.assertEquals(
             JoursFeries.abolition_esclavage(2018, "Saint-Martin"), date(2018, 5, 28)
         )
+
+    def test_is_off_true(self):
+        test_date = date(2018, 11, 1)
+        self.assertTrue(JoursFeries.is_off(test_date))
+
+    def test_is_off_false(self):
+        test_date = date(2021, 3, 10)
+        self.assertFalse(JoursFeries.is_off(test_date))
+

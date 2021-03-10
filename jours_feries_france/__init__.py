@@ -197,3 +197,11 @@ class JoursFeries(object):
             return date(year, 12, 20)
 
         return None
+        
+    @staticmethod
+    def is_off(day=date.today(), zone=None):
+        JoursFeries.check_zone(zone)
+        days_off = set(JoursFeries.for_year(day.year, zone).values())
+        if day in days_off:
+            return True
+        return False
