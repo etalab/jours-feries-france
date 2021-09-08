@@ -197,3 +197,62 @@ class TestDatasetParser(unittest.TestCase):
         self.assertEquals(
             JoursFeries.abolition_esclavage(2018, "Saint-Martin"), date(2018, 5, 28)
         )
+
+        # Gestion des dates antérieures au décret officiel relatif à la commémoration de l'abolition de l'esclavage
+        # https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000336997/
+
+        # Mayotte
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1982, "Mayotte"), None
+        )
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1983, "Mayotte"), date(1983, 4, 27)
+        )
+
+        # Martinique
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1982, "Martinique"), None
+        )
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1983, "Martinique"), date(1983, 5, 22)
+        )
+
+        # Guadeloupe
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1982, "Guadeloupe"), None
+        )
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1983, "Guadeloupe"), date(1983, 5, 27)
+        )
+
+        # Saint-Martin
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1982, "Saint-Martin"), None
+        )
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1983, "Saint-Martin"), date(1983, 5, 27)
+        )
+
+        # Guyane
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1982, "Guyane"), None
+        )
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1983, "Guyane"), date(1983, 6, 10)
+        )
+
+        # Saint-Barthélémy
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1982, "Saint-Barthélémy"), None
+        )
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1983, "Saint-Barthélémy"), date(1983, 10, 9)
+        )
+
+        # La Réunion
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1980, "La Réunion"), None
+        )
+        self.assertEquals(
+            JoursFeries.abolition_esclavage(1981, "La Réunion"), date(1981, 12, 20)
+        )

@@ -172,25 +172,25 @@ class JoursFeries(object):
 
     @staticmethod
     def abolition_esclavage(year, zone):
-        if zone == JoursFeries.check_zone("Mayotte"):
+        if zone == JoursFeries.check_zone("Mayotte") and year >= 1983:
             return date(year, 4, 27)
 
-        if zone == JoursFeries.check_zone("Martinique"):
+        if zone == JoursFeries.check_zone("Martinique") and year >= 1983:
             return date(year, 5, 22)
 
-        if zone == JoursFeries.check_zone("Guadeloupe"):
+        if zone == JoursFeries.check_zone("Guadeloupe") and year >= 1983:
             return date(year, 5, 27)
 
         if zone == JoursFeries.check_zone("Saint-Martin"):
             if year >= 2018:
                 return date(year, 5, 28)
-            else:
+            elif year >= 1983:
                 return date(year, 5, 27)
 
-        if zone == JoursFeries.check_zone("Guyane"):
+        if zone == JoursFeries.check_zone("Guyane") and year >= 1983:
             return date(year, 6, 10)
 
-        if zone == JoursFeries.check_zone("Saint-Barthélémy"):
+        if zone == JoursFeries.check_zone("Saint-Barthélémy") and year >= 1983:
             return date(year, 10, 9)
 
         if zone == JoursFeries.check_zone("La Réunion") and year >= 1981:
