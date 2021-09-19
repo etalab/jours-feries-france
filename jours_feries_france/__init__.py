@@ -166,7 +166,7 @@ class JoursFeries(object):
 
     @staticmethod
     def deuxieme_jour_noel(year, zone):
-        if zone == JoursFeries.check_zone("Alsace-Moselle"):
+        if zone == JoursFeries.check_zone("Alsace-Moselle") and year >= 1892:
             return date(year, 12, 26)
         return None
 
